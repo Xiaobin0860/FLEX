@@ -46,4 +46,7 @@
 /// Users of the toolbar can attach a tap gesture recognizer to show additional details.
 @property (nonatomic, strong, readonly) UIView *selectedViewDescriptionContainer;
 
+/// Fold toolbar
+- (void)fold;
+
 @end

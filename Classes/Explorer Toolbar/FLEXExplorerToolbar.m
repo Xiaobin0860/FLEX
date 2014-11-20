@@ -223,4 +223,30 @@
     return CGSizeMake(size.width, height);
 }
 
+- (void)fold
+{
+    static BOOL fold = NO;
+    CGRect frame = self.frame;
+    if (fold) {
+        self.globalsItem.hidden = YES;
+        self.hierarchyItem.hidden = YES;
+        self.selectItem.hidden = YES;
+        self.moveItem.hidden = YES;
+        self.closeItem.hidden = YES;
+        frame.size = self.dragHandle.bounds.size;
+    } else {
+        self.globalsItem.hidden = NO;
+        self.hierarchyItem.hidden = NO;
+        self.selectItem.hidden = NO;
+        self.moveItem.hidden = NO;
+        self.closeItem.hidden = NO;
+        frame.size = CGSizeMake(self.window.bounds.size.width, frame.size.height);
+    }
+    [UIView animateWithDuration:0.5 animations:^{
+        self.frame = frame;
+    } completion:^(BOOL finished) {
+        fold = !fold;
+    }];
+}
+
 @end
