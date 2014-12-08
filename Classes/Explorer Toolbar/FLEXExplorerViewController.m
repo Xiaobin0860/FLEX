@@ -119,6 +119,13 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
     [self updateButtonStates];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    NSLog(@"[FLEXExplorerViewController viewDidAppear: %i]", animated);
+    [self.explorerToolbar fold:YES];
+}
+
 
 #pragma mark - Status Bar Wrangling for iOS 7
 
@@ -575,7 +582,7 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
 //            } completion:nil];
 //        }];
         
-        [self.explorerToolbar fold];
+        [self.explorerToolbar fold:NO];
     }
 }
 
@@ -792,6 +799,10 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
     return shouldReceiveTouch;
 }
 
+- (void)foldExplorerBar
+{
+    [self.explorerToolbar fold:YES];
+}
 
 #pragma mark - FLEXHierarchyTableViewControllerDelegate
 

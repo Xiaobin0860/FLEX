@@ -47,6 +47,6 @@
 @property (nonatomic, strong, readonly) UIView *selectedViewDescriptionContainer;
 
 /// Fold toolbar
-- (void)fold;
+- (void)fold:(BOOL)force;
 
 @end

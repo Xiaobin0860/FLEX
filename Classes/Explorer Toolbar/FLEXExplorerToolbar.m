@@ -223,9 +223,10 @@
     return CGSizeMake(size.width, height);
 }
 
-- (void)fold
+- (void)fold:(BOOL)force
 {
-    static BOOL fold = NO;
+    static BOOL fold = YES;
+    if (force) fold = YES;
     CGRect frame = self.frame;
     if (fold) {
         self.globalsItem.hidden = YES;

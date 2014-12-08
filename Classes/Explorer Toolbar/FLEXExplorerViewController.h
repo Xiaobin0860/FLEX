@@ -16,6 +16,8 @@
 
 - (BOOL)shouldReceiveTouchAtWindowPoint:(CGPoint)pointInWindowCoordinates;
 
+- (void)foldExplorerBar;
+
 @end
 
 @protocol FLEXExplorerViewControllerDelegate <NSObject>
