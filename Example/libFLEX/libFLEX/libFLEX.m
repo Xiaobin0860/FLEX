@@ -29,7 +29,7 @@
 
 - (void)appLaunched:(NSNotification *)notification
 {
-    NSLog(@"[libFLEX appLaunched: %@]", notification);
+    //NSLog(@"[libFLEX appLaunched: %@]", notification);
     [[FLEXManager sharedManager] showExplorer];
 }
 

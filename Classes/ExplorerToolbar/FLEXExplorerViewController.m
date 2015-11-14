@@ -123,7 +123,7 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    NSLog(@"[FLEXExplorerViewController viewDidAppear: %i]", animated);
+    //NSLog(@"[FLEXExplorerViewController viewDidAppear: %i]", animated);
     [self.explorerToolbar fold:YES];
 }
 
