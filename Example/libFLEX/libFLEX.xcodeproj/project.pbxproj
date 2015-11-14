@@ -116,7 +116,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		522949271A1DCB4500A5A01C /* liblibFLEX.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = liblibFLEX.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		522949271A1DCB4500A5A01C /* libFLEX.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libFLEX.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		5229492A1A1DCB4500A5A01C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5229492C1A1DCB4500A5A01C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		522949321A1DCB4500A5A01C /* control */ = {isa = PBXFileReference; lastKnownFileType = text; name = control; path = Package/DEBIAN/control; sourceTree = "<group>"; };
@@ -254,7 +254,7 @@
 		522949281A1DCB4500A5A01C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				522949271A1DCB4500A5A01C /* liblibFLEX.dylib */,
+				522949271A1DCB4500A5A01C /* libFLEX.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -567,7 +567,7 @@
 			);
 			name = libFLEX;
 			productName = libFLEX;
-			productReference = 522949271A1DCB4500A5A01C /* liblibFLEX.dylib */;
+			productReference = 522949271A1DCB4500A5A01C /* libFLEX.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -576,7 +576,7 @@
 		5229491E1A1DCB4500A5A01C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0710;
 				TargetAttributes = {
 					522949261A1DCB4500A5A01C = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -682,6 +682,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(iOSOpenDevPath)/frameworks/**",
@@ -701,6 +702,7 @@
 				HEADER_SEARCH_PATHS = "$(iOSOpenDevPath)/include/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(iOSOpenDevPath)/lib/**";
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = NO;
