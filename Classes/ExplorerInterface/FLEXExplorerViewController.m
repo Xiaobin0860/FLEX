@@ -384,7 +384,7 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
 - (NSArray *)allViewsInHierarchy
 {
     NSMutableArray *allViews = [NSMutableArray array];
-    NSArray *windows = [self allWindows];
+    NSArray *windows = [FLEXUtility allWindows];
     for (UIWindow *window in windows) {
         if (window != self.view.window) {
             [allViews addObject:window];
@@ -392,28 +392,6 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
         }
     }
     return allViews;
-}
-
-- (NSArray *)allWindows
-{
-    BOOL includeInternalWindows = YES;
-    BOOL onlyVisibleWindows = NO;
-
-    NSArray *allWindowsComponents = @[@"al", @"lWindo", @"wsIncl", @"udingInt", @"ernalWin", @"dows:o", @"nlyVisi", @"bleWin", @"dows:"];
-    SEL allWindowsSelector = NSSelectorFromString([allWindowsComponents componentsJoinedByString:@""]);
-
-    NSMethodSignature *methodSignature = [[UIWindow class] methodSignatureForSelector:allWindowsSelector];
-    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
-
-    invocation.target = [UIWindow class];
-    invocation.selector = allWindowsSelector;
-    [invocation setArgument:&includeInternalWindows atIndex:2];
-    [invocation setArgument:&onlyVisibleWindows atIndex:3];
-    [invocation invoke];
-
-    __unsafe_unretained NSArray *windows = nil;
-    [invocation getReturnValue:&windows];
-    return windows;
 }
 
 - (UIWindow *)statusWindow
@@ -594,7 +572,7 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
 - (NSArray *)viewsAtPoint:(CGPoint)tapPointInWindow skipHiddenViews:(BOOL)skipHidden
 {
     NSMutableArray *views = [NSMutableArray array];
-    for (UIWindow *window in [self allWindows]) {
+    for (UIWindow *window in [FLEXUtility allWindows]) {
         // Don't include the explorer's own window or subviews.
         if (window != self.view.window && [window pointInside:tapPointInWindow withEvent:nil]) {
             [views addObject:window];
@@ -609,7 +587,7 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
     // Select in the window that would handle the touch, but don't just use the result of hitTest:withEvent: so we can still select views with interaction disabled.
     // Default to the the application's key window if none of the windows want the touch.
     UIWindow *windowForSelection = [[UIApplication sharedApplication] keyWindow];
-    for (UIWindow *window in [[self allWindows] reverseObjectEnumerator]) {
+    for (UIWindow *window in [[FLEXUtility allWindows] reverseObjectEnumerator]) {
         // Ignore the explorer's own window.
         if (window != self.view.window) {
             if ([window hitTest:tapPointInWindow withEvent:nil]) {
@@ -852,13 +830,20 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
     if (viewsModalShown) {
         [self resignKeyAndDismissViewControllerAnimated:YES completion:nil];
     } else {
-        [self resignKeyAndDismissViewControllerAnimated:NO completion:nil];
-        NSArray *allViews = [self allViewsInHierarchy];
-        NSDictionary *depthsForViews = [self hierarchyDepthsForViews:allViews];
-        FLEXHierarchyTableViewController *hierarchyTVC = [[FLEXHierarchyTableViewController alloc] initWithViews:allViews viewsAtTap:self.viewsAtTapPoint selectedView:self.selectedView depths:depthsForViews];
-        hierarchyTVC.delegate = self;
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:hierarchyTVC];
-        [self makeKeyAndPresentViewController:navigationController animated:YES completion:nil];
+        void (^presentBlock)() = ^{
+            NSArray *allViews = [self allViewsInHierarchy];
+            NSDictionary *depthsForViews = [self hierarchyDepthsForViews:allViews];
+            FLEXHierarchyTableViewController *hierarchyTVC = [[FLEXHierarchyTableViewController alloc] initWithViews:allViews viewsAtTap:self.viewsAtTapPoint selectedView:self.selectedView depths:depthsForViews];
+            hierarchyTVC.delegate = self;
+            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:hierarchyTVC];
+            [self makeKeyAndPresentViewController:navigationController animated:YES completion:nil];
+        };
+        
+        if (self.presentedViewController) {
+            [self resignKeyAndDismissViewControllerAnimated:NO completion:presentBlock];
+        } else {
+            presentBlock();
+        }
     }
 }
 
@@ -869,12 +854,19 @@ typedef NS_ENUM(NSUInteger, FLEXExplorerMode) {
     if (menuModalShown) {
         [self resignKeyAndDismissViewControllerAnimated:YES completion:nil];
     } else {
-        [self resignKeyAndDismissViewControllerAnimated:NO completion:nil];
-        FLEXGlobalsTableViewController *globalsViewController = [[FLEXGlobalsTableViewController alloc] init];
-        globalsViewController.delegate = self;
-        [FLEXGlobalsTableViewController setApplicationWindow:[[UIApplication sharedApplication] keyWindow]];
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:globalsViewController];
-        [self makeKeyAndPresentViewController:navigationController animated:YES completion:nil];
+        void (^presentBlock)() = ^{
+            FLEXGlobalsTableViewController *globalsViewController = [[FLEXGlobalsTableViewController alloc] init];
+            globalsViewController.delegate = self;
+            [FLEXGlobalsTableViewController setApplicationWindow:[[UIApplication sharedApplication] keyWindow]];
+            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:globalsViewController];
+            [self makeKeyAndPresentViewController:navigationController animated:YES completion:nil];
+        };
+        
+        if (self.presentedViewController) {
+            [self resignKeyAndDismissViewControllerAnimated:NO completion:presentBlock];
+        } else {
+            presentBlock();
+        }
     }
 }
 

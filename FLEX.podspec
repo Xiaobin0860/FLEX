@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name             = "FLEX"
-  spec.version          = "2.1.1"
+  spec.version          = "2.3.0"
   spec.summary          = "A set of in-app debugging and exploration tools for iOS"
   spec.description      = <<-DESC
                         - Inspect and modify views in the hierarchy.
@@ -29,11 +29,11 @@ Pod::Spec.new do |spec|
   spec.license          = { :type => "BSD", :file => "LICENSE" }
   spec.author           = { "Ryan Olson" => "ryanolsonk@gmail.com" }
   spec.social_media_url = "https://twitter.com/ryanolsonk"
-  spec.platform         = :ios, "7.0"
+  spec.platform         = :ios, "8.0"
   spec.source           = { :git => "https://github.com/Flipboard/FLEX.git", :tag => "#{spec.version}" }
   spec.source_files     = "Classes/**/*.{h,m}"
-  spec.frameworks       = "CoreGraphics"
-  spec.libraries        = "z"
+  spec.frameworks       = [ "Foundation", "UIKit", "CoreGraphics" ]
+  spec.libraries        = [ "z", "sqlite3" ]
   spec.requires_arc     = true
-  spec.public_header_files = "Classes/**/FLEXManager.h"
+  spec.public_header_files = [ "Classes/**/FLEXManager.h", "Classes/FLEX.h" ]
 end

@@ -21,6 +21,8 @@ FLEX (Flipboard Explorer) is a set of in-app debugging and exploration tools for
 - View system log messages (e.g. from `NSLog`).
 - Access any live object via a scan of the heap.
 - View the file system within your app's sandbox.
+- Browse SQLite/Realm databases in the file system.
+- Trigger 3D touch in the simulator using the control, shift, and command keys.
 - Explore all classes in your app and linked systems frameworks (public and private).
 - Quickly access useful objects such as `[UIApplication sharedApplication]`, the app delegate, the root view controller on the key window, and more.
 - Dynamically view and modify `NSUserDefaults` values.
@@ -85,6 +87,16 @@ View the file system within your app's sandbox. FLEX shows file sizes, image pre
 
 ![File Browser](http://engineering.flipboard.com/assets/flex/file-browser.gif)
 
+### SQLite Browser
+SQLite database files (with either `.db` or `.sqlite` extensions), or [Realm](http://realm.io) database files can be explored using FLEX. The database browser lets you view all tables, and individual tables can be sorted by tapping column headers.
+
+![Database Browser](https://cloud.githubusercontent.com/assets/1422245/11786700/d0ab95dc-a23c-11e5-80ce-0e1b4dba2b6b.png)
+
+### 3D Touch in the Simulator
+Using a combination of the command, control, and shift keys, you can simulate different levels of 3D touch pressure in the simulator. Each key contributes 1/3 of maximum possible force. Note that you need to move the touch slightly to get pressure updates.
+
+![Simulator 3D Touch](https://cloud.githubusercontent.com/assets/1422245/11786615/5d4ef96c-a23c-11e5-975e-67275341e439.gif)
+
 ### System Library Exploration
 Go digging for all things public and private. To learn more about a class, you can create an instance of it and explore its default state.
 
@@ -102,7 +114,7 @@ The code injection is left as an exercise for the reader. :innocent:
 
 
 ## Installation
-FLEX is available on [Cocoapods](http://cocoapods.org/?q=FLEX). Simply add the following line to your podfile:
+FLEX is available on [CocoaPods](http://cocoapods.org/?q=FLEX). Simply add the following line to your podfile:
 
 ```ruby
 pod 'FLEX', '~> 2.0', :configurations => ['Debug']
@@ -142,11 +154,13 @@ FLEX builds on ideas and inspiration from open source tools that came before it.
 - [Gist](https://gist.github.com/samdmarshall/17f4e66b5e2e579fd396) from [@samdmarshall](https://github.com/samdmarshall): another example of enumerating malloc blocks.
 - [Non-pointer isa](http://www.sealiesoftware.com/blog/archive/2013/09/24/objc_explain_Non-pointer_isa.html): an explanation of changes to the isa field on iOS for ARM64 and mention of the useful `objc_debug_isa_class_mask` variable.
 - [GZIP](https://github.com/nicklockwood/GZIP): A library for compressing/decompressing data on iOS using libz.
+- [FMDB](https://github.com/ccgus/fmdb): This is an Objective-C wrapper around SQLite
+
 
 
 
 ## Contributing
-We welcome pull requests for bug fixes, new features, and improvements to FLEX. Contributors to the main FLEX repository must accept Flipboard's Apache-style [Individual Contributor License Agreement (CLA)](https://docs.google.com/forms/d/1gh9y6_i8xFn6pA15PqFeye19VqasuI9-bGp_e0owy74/viewform) before any changes can be merged.
+Please see our [Contributing Guide](https://github.com/Flipboard/FLEX/blob/master/CONTRIBUTING.md).
 
 
 ## TODO
