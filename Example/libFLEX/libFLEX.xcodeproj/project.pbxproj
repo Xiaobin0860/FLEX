@@ -833,6 +833,7 @@
 				TargetAttributes = {
 					522949261A1DCB4500A5A01C = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = UF5W33258N;
 					};
 				};
 			};
@@ -1015,7 +1016,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yujie dong (EJSV8EQ7BU)";
+				DEVELOPMENT_TEAM = UF5W33258N;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = "";
@@ -1039,7 +1041,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yujie dong (EJSV8EQ7BU)";
+				DEVELOPMENT_TEAM = UF5W33258N;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = "";
