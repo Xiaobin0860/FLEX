@@ -176,6 +176,8 @@
 		5250B24D1D70995F00546133 /* FLEXNetworkCurlLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 5250B24B1D70995F00546133 /* FLEXNetworkCurlLogger.h */; };
 		5250B24E1D70995F00546133 /* FLEXNetworkCurlLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5250B24C1D70995F00546133 /* FLEXNetworkCurlLogger.m */; };
 		5250B2501D70996B00546133 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5250B24F1D70996B00546133 /* libsqlite3.tbd */; };
+		52849ED3217210AA00B2CC57 /* FLEXObjectRef.m in Sources */ = {isa = PBXBuildFile; fileRef = 52849ED1217210A900B2CC57 /* FLEXObjectRef.m */; };
+		52849ED4217210AA00B2CC57 /* FLEXObjectRef.h in Headers */ = {isa = PBXBuildFile; fileRef = 52849ED2217210A900B2CC57 /* FLEXObjectRef.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -353,6 +355,8 @@
 		5250B24B1D70995F00546133 /* FLEXNetworkCurlLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXNetworkCurlLogger.h; sourceTree = "<group>"; };
 		5250B24C1D70995F00546133 /* FLEXNetworkCurlLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXNetworkCurlLogger.m; sourceTree = "<group>"; };
 		5250B24F1D70996B00546133 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		52849ED1217210A900B2CC57 /* FLEXObjectRef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXObjectRef.m; sourceTree = "<group>"; };
+		52849ED2217210A900B2CC57 /* FLEXObjectRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXObjectRef.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -397,6 +401,8 @@
 				52293D881BF7268D00AB82E5 /* FLEXLibrariesTableViewController.m */,
 				52293D891BF7268D00AB82E5 /* FLEXLiveObjectsTableViewController.h */,
 				52293D8A1BF7268D00AB82E5 /* FLEXLiveObjectsTableViewController.m */,
+				52849ED2217210A900B2CC57 /* FLEXObjectRef.h */,
+				52849ED1217210A900B2CC57 /* FLEXObjectRef.m */,
 				52293D8B1BF7268D00AB82E5 /* FLEXWebViewController.h */,
 				52293D8C1BF7268D00AB82E5 /* FLEXWebViewController.m */,
 				52293D8D1BF7268D00AB82E5 /* SystemLog */,
