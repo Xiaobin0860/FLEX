@@ -9,8 +9,6 @@
 #import "FLEXMethodCallingViewController.h"
 #import "FLEXRuntimeUtility.h"
 #import "FLEXFieldEditorView.h"
-#import "FLEXObjectExplorerFactory.h"
-#import "FLEXObjectExplorerViewController.h"
 #import "FLEXArgumentInputView.h"
 #import "FLEXArgumentInputViewFactory.h"
 
@@ -38,8 +36,8 @@
     
     self.fieldEditorView.fieldDescription = [FLEXRuntimeUtility prettyNameForMethod:self.method isClassMethod:[self isClassMethod]];
     
-    NSArray *methodComponents = [FLEXRuntimeUtility prettyArgumentComponentsForMethod:self.method];
-    NSMutableArray *argumentInputViews = [NSMutableArray array];
+    NSArray<NSString *> *methodComponents = [FLEXRuntimeUtility prettyArgumentComponentsForMethod:self.method];
+    NSMutableArray<FLEXArgumentInputView *> *argumentInputViews = [NSMutableArray array];
     unsigned int argumentIndex = kFLEXNumberOfImplicitArgs;
     for (NSString *methodComponent in methodComponents) {
         char *argumentTypeEncoding = method_copyArgumentType(self.method, argumentIndex);
@@ -86,14 +84,8 @@
         NSString *message = [error localizedDescription];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
-    } else if (returnedObject) {
-        // For non-nil (or void) return types, push an explorer view controller to display the returned object
-        FLEXObjectExplorerViewController *explorerViewController = [FLEXObjectExplorerFactory explorerViewControllerForObject:returnedObject];
-        [self.navigationController pushViewController:explorerViewController animated:YES];
     } else {
-        // If we didn't get a returned object but the method call succeeded,
-        // pop this view controller off the stack to indicate that the call went through.
-        [self.navigationController popViewControllerAnimated:YES];
+        [self exploreObjectOrPopViewController:returnedObject];
     }
 }
 
